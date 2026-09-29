@@ -35,7 +35,7 @@ Boulangerie/
 
 ## Live Demo
 
-🌐 Coming soon.
+🌐 [Website](https://boulangerie-livid.vercel.app/)
 
 ## Feedback
 
