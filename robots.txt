@@ -1,0 +1,27 @@
+# Robots des moteurs de recherche classiques : autorisés à explorer.
+# (Les pages portent <meta name="robots" content="noindex"> : elles ne sont pas indexées,
+#  mais les moteurs doivent pouvoir les lire pour voir cette consigne.)
+User-agent: *
+Allow: /
+
+# Robots d'IA (entraînement de modèles, assistants, moteurs de réponse) : exclus, à la demande de l'éditeur.
+# Attention : robots.txt est une consigne, pas un verrou. Les robots honnêtes la respectent.
+User-agent: GPTBot
+User-agent: ChatGPT-User
+User-agent: OAI-SearchBot
+User-agent: ClaudeBot
+User-agent: Claude-User
+User-agent: Claude-SearchBot
+User-agent: anthropic-ai
+User-agent: PerplexityBot
+User-agent: Perplexity-User
+User-agent: Google-Extended
+User-agent: Applebot-Extended
+User-agent: CCBot
+User-agent: Bytespider
+User-agent: meta-externalagent
+User-agent: Amazonbot
+User-agent: cohere-ai
+User-agent: Diffbot
+User-agent: MistralAI-User
+Disallow: /
