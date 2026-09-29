@@ -1,3 +1,13 @@
+<!--
+  Author: Nicolas Dos Santos
+  Created: 2026
+
+  File: politique-confidentialite.html
+  Description: Privacy and cookie policy page.
+
+  © Nicolas Dos Santos. All rights reserved.
+-->
+
 <!doctype html>
 <html lang="fr">
 <head>
@@ -23,7 +33,7 @@
 
   <main id="contenu" tabindex="-1" class="container legal">
     <h1>Politique de confidentialité</h1>
-    <p class="updated">Dernière mise à jour : 28 septembre 2026</p>
+    <p class="updated">Dernière mise à jour : 29 septembre 2026</p>
 
     <p>Ce site est un site de démonstration (la boulangerie « Maison Fournil » est fictive). Il ne comporte
       <strong>aucun formulaire, aucun compte, aucun outil de mesure d'audience, aucune publicité</strong>.
@@ -42,10 +52,10 @@
       <li><strong>Données</strong> : adresse IP, date et heure de la visite, page demandée, type de navigateur, page d'origine.</li>
       <li><strong>But</strong> : faire fonctionner le site, le protéger contre les attaques et diagnostiquer les pannes.</li>
       <li><strong>Base légale</strong> : intérêt légitime à assurer la sécurité et la disponibilité du site (article 6.1.f du RGPD).</li>
-      <li><strong>Durée</strong> : fixée par Vercel, qui ne la précise pas publiquement (voir sa <a href="https://vercel.com/legal/privacy-notice">politique de confidentialité</a>).</li>
+      <li><strong>Durée</strong> : fixée par Vercel, qui ne la précise pas publiquement (voir sa <a href="https://vercel.com/legal/privacy-notice" target="_blank" rel="noopener">politique de confidentialité</a>).</li>
       <li><strong>Qui y a accès</strong> : l'éditeur et l'hébergeur Vercel Inc., sous-traitant.</li>
       <li><strong>Sortie de l'Union européenne</strong> : oui, vers les États-Unis.
-        Le site utilise l'offre gratuite de Vercel, qui n'inclut pas d'accord de traitement des données (DPA) ni de clauses contractuelles types : le transfert est régi par la seule <a href="https://vercel.com/legal/privacy-notice">politique de confidentialité de Vercel</a>.</li>
+        Le site utilise l'offre gratuite de Vercel, qui n'inclut pas d'accord de traitement des données (DPA) ni de clauses contractuelles types : le transfert est régi par la seule <a href="https://vercel.com/legal/privacy-notice" target="_blank" rel="noopener">politique de confidentialité de Vercel</a>.</li>
     </ul>
 
     <h3>2. Carte Google Maps (uniquement si vous l'acceptez)</h3>
@@ -56,7 +66,7 @@
         Sans accord, la carte n'est pas chargée et rien n'est transmis à Google.</li>
       <li><strong>Durée</strong> : fixée par Google pour ses cookies (voir le tableau des cookies ci-dessous).</li>
       <li><strong>Qui y a accès</strong> : Google (Google Ireland Limited et Google LLC), qui agit comme responsable de ses propres traitements :
-        voir la <a href="https://policies.google.com/privacy?hl=fr">politique de confidentialité de Google</a>.</li>
+        voir la <a href="https://policies.google.com/privacy?hl=fr" target="_blank" rel="noopener">politique de confidentialité de Google</a>.</li>
       <li><strong>Sortie de l'Union européenne</strong> : oui, vers les États-Unis. Google LLC adhère au Data Privacy Framework UE–États-Unis
         (décision d'adéquation de la Commission européenne du 10 juillet 2023).</li>
     </ul>
@@ -82,10 +92,6 @@
         (Gmail, Google, dont les données peuvent être traitées aux États-Unis).</li>
     </ul>
 
-    <h3>Liens vers Instagram et Facebook</h3>
-    <p>Les icônes Instagram et Facebook sont de simples liens : rien n'est chargé depuis ces services tant que vous
-      ne cliquez pas. Une fois sur leur site, ce sont leurs propres règles de confidentialité qui s'appliquent.</p>
-
     <h2>Vos droits</h2>
     <p>Vous pouvez demander l'<strong>accès</strong> à vos données, leur <strong>rectification</strong>, leur
       <strong>effacement</strong>, la <strong>limitation</strong> de leur traitement, vous <strong>opposer</strong> à un
@@ -97,7 +103,7 @@
       techniques : des informations complémentaires pourront vous être demandées (article 11 du RGPD).</p>
     <p>Si vous estimez que vos droits ne sont pas respectés, vous pouvez adresser une réclamation à la CNIL :
       3 place de Fontenoy, TSA 80715, 75334 Paris Cedex 07, ou en ligne sur
-      <a href="https://www.cnil.fr/fr/plaintes">cnil.fr/fr/plaintes</a>.</p>
+      <a href="https://www.cnil.fr/fr/plaintes" target="_blank" rel="noopener">cnil.fr/fr/plaintes</a>.</p>
 
     <h2 id="cookies">Cookies et traceurs</h2>
     <p>Un seul service du site dépose des cookies non nécessaires : la carte Google Maps. Elle n'est chargée
@@ -110,18 +116,18 @@
         </thead>
         <tbody>
           <tr>
-            <td><code>choix-cookies</code> (stockage local)</td>
-            <td>Ce site</td>
-            <td>Mémoriser votre choix sur les cookies</td>
-            <td>6 mois</td>
-            <td>Non (strictement nécessaire)</td>
+            <td data-label="Traceur"><code>choix-cookies</code> (stockage local)</td>
+            <td data-label="Émetteur">Ce site</td>
+            <td data-label="Finalité">Mémoriser votre choix sur les cookies</td>
+            <td data-label="Durée">6 mois</td>
+            <td data-label="Accord requis">Non (strictement nécessaire)</td>
           </tr>
           <tr>
-            <td>Cookies de la carte Google Maps</td>
-            <td>Google</td>
-            <td>Faire fonctionner la carte et, selon Google, mémoriser des préférences et mesurer son utilisation</td>
-            <td>Fixée par Google, jusqu'à plusieurs mois (<a href="https://policies.google.com/technologies/cookies?hl=fr">liste tenue par Google</a>)</td>
-            <td>Oui</td>
+            <td data-label="Traceur">Cookies de la carte Google Maps</td>
+            <td data-label="Émetteur">Google</td>
+            <td data-label="Finalité">Faire fonctionner la carte et, selon Google, mémoriser des préférences et mesurer son utilisation</td>
+            <td data-label="Durée">Fixée par Google, jusqu'à plusieurs mois (<a href="https://policies.google.com/technologies/cookies?hl=fr" target="_blank" rel="noopener">liste tenue par Google</a>)</td>
+            <td data-label="Accord requis">Oui</td>
           </tr>
         </tbody>
       </table>

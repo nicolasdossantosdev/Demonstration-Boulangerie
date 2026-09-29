@@ -1,14 +1,23 @@
-/* ============ Palette & typo (contrastes vérifiés WCAG AA) ============ */
+/*
+  Author: Nicolas Dos Santos
+  Created: 2026
+
+  File: style.css
+  Description: Site styles.
+
+  © Nicolas Dos Santos. All rights reserved.
+*/
+
 :root {
-  --background: #fbf6ee;   /* crème */
-  --foreground: #3b2a1e;   /* brun foncé */
+  --background: #fbf6ee;
+  --foreground: #3b2a1e;
   --card: #fffcf7;
-  --primary: #8a5a1f;      /* brun doré */
+  --primary: #8a5a1f;
   --primary-hover: #744b18;
   --on-primary: #ffffff;
-  --muted: #f1e6d6;        /* beige */
+  --muted: #f1e6d6;
   --muted-foreground: #6b5646;
-  --terracotta: #a0461f;   /* accent */
+  --terracotta: #a0461f;
   --border: #e3d3bc;
   --radius: 0.75rem;
   --header-h: 4rem;
@@ -16,7 +25,6 @@
   --font-serif: "Playfair Display", Georgia, serif;
 }
 
-/* ============ Polices hébergées localement (licence SIL Open Font License) ============ */
 @font-face {
   font-family: "Inter";
   src: url("fonts/inter-latin.woff2") format("woff2");
@@ -32,7 +40,6 @@
   font-display: swap;
 }
 
-/* ============ Base ============ */
 [hidden] { display: none !important; }
 *, *::before, *::after { box-sizing: border-box; }
 html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
@@ -56,7 +63,6 @@ a { color: inherit; }
   position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
   overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0;
 }
-/* Lien d'évitement (RGAA 12.7) : visible uniquement au focus clavier */
 .skip-link {
   position: absolute; left: 1rem; top: -4rem; z-index: 100;
   padding: 0.75rem 1rem; border-radius: 0.5rem;
@@ -65,7 +71,6 @@ a { color: inherit; }
 .skip-link:focus { top: 1rem; }
 main:focus { outline: none; }
 
-/* Bandeau « site de démonstration » */
 .demo-notice {
   padding: 0.5rem 1rem; text-align: center; font-size: 0.875rem;
   background: var(--foreground); color: var(--background);
@@ -77,7 +82,6 @@ main:focus { outline: none; }
 .icon { width: 1.25rem; height: 1.25rem; flex-shrink: 0; }
 .icon--lg { width: 2rem; height: 2rem; color: var(--terracotta); }
 
-/* ============ Boutons (cibles ≥ 44px) ============ */
 .btn {
   display: inline-flex; align-items: center; justify-content: center; gap: 0.5rem;
   min-height: 2.75rem; padding: 0.5rem 1.25rem;
@@ -101,7 +105,6 @@ main:focus { outline: none; }
   .btn-row--center { justify-content: center; }
 }
 
-/* ============ 1. Header ============ */
 .header {
   position: sticky; top: 0; z-index: 40;
   background: rgba(251, 246, 238, .92);
@@ -111,6 +114,11 @@ main:focus { outline: none; }
 .header__inner { display: flex; align-items: center; gap: 1rem; height: var(--header-h); }
 .logo { display: inline-flex; align-items: center; min-height: 2.75rem; font: 700 1.25rem var(--font-serif); text-decoration: none; margin-right: auto; }
 .header__cta { display: none; }
+.logo { white-space: nowrap; }
+.header__call { min-height: 2.75rem; padding-inline: 0.75rem; }
+@media (max-width: 639px) { .header__inner { gap: 0.5rem; } }
+@media (max-width: 359px) { .logo { font-size: 1.0625rem; } }
+@media (min-width: 640px) { .header__call { display: none; } }
 .burger {
   display: inline-flex; align-items: center; justify-content: center;
   width: 2.75rem; height: 2.75rem; border: 0; border-radius: 0.5rem;
@@ -119,7 +127,6 @@ main:focus { outline: none; }
 .burger:hover { background: var(--muted); }
 .burger .icon { width: 1.5rem; height: 1.5rem; }
 
-/* Menu mobile : panneau déroulant sous le header */
 .nav {
   display: none;
   position: absolute; top: 100%; left: 0; right: 0;
@@ -146,7 +153,6 @@ main:focus { outline: none; }
   .nav li a:hover { background: none; }
 }
 
-/* ============ 2. Hero ============ */
 .hero {
   position: relative; isolation: isolate; overflow: hidden;
   display: flex; align-items: center;
@@ -163,14 +169,12 @@ main:focus { outline: none; }
 .hero h1 { max-width: 40rem; margin-top: 1rem; font-size: clamp(2.25rem, 7vw, 3.75rem); }
 .hero__subtitle { max-width: 36rem; margin-top: 1.5rem; font-size: 1.125rem; color: rgba(255,255,255,.92); }
 
-/* ============ Sections ============ */
 .section { padding-block: 4rem; }
 @media (min-width: 640px) { .section { padding-block: 6rem; } }
 .section--muted { background: var(--muted); }
 .section__head { text-align: center; }
 .section__head p { max-width: 42rem; margin: 1rem auto 0; font-size: 1.125rem; color: var(--muted-foreground); }
 
-/* ============ 3. Notre histoire ============ */
 .story { display: grid; gap: 2.5rem; align-items: center; }
 .story p { margin-top: 1rem; font-size: 1.125rem; line-height: 1.7; color: var(--muted-foreground); }
 .story__img { aspect-ratio: 4 / 3; border-radius: 1rem; overflow: hidden; box-shadow: 0 10px 30px rgba(59, 42, 30, .18); }
@@ -179,10 +183,9 @@ main:focus { outline: none; }
 .highlight { display: flex; gap: 1rem; padding: 1.25rem; border-radius: var(--radius); background: var(--muted); }
 .highlight h3 { font-size: 1.125rem; }
 .highlight p { margin-top: 0.25rem; color: var(--muted-foreground); }
-@media (min-width: 640px) { .highlights { grid-template-columns: repeat(3, 1fr); } }
+@media (min-width: 640px) { .highlights { grid-template-columns: repeat(2, 1fr); } }
 @media (min-width: 768px) { .story { grid-template-columns: 1fr 1fr; gap: 4rem; } }
 
-/* ============ 4. Galerie bento ============ */
 .gallery { overflow: hidden; }
 .gallery__track {
   display: grid; grid-auto-flow: column; grid-auto-columns: minmax(15rem, 1fr);
@@ -194,7 +197,6 @@ main:focus { outline: none; }
 .gallery__track::-webkit-scrollbar { display: none; }
 .gallery__track.is-dragging { cursor: grabbing; user-select: none; }
 
-/* Slider : flèches sous la galerie */
 .slider__controls { display: flex; justify-content: center; gap: 0.75rem; margin-top: 1rem; }
 .slider__btn {
   display: inline-flex; align-items: center; justify-content: center;
@@ -233,7 +235,6 @@ main:focus { outline: none; }
 .tile__desc { font-size: 0.875rem; color: rgba(255,255,255,.85); }
 .tile:hover, .tile:focus-visible { transform: scale(1.02); box-shadow: 0 10px 25px rgba(59, 42, 30, .2); }
 .tile:hover img, .tile:focus-visible img { transform: scale(1.05); }
-/* Souris : légende au survol. Tactile : légende toujours visible. */
 @media (hover: hover) {
   .tile::after { opacity: 0; }
   .tile__caption { opacity: 0; transform: translateY(1rem); }
@@ -241,7 +242,6 @@ main:focus { outline: none; }
   .tile:hover .tile__caption, .tile:focus-visible .tile__caption { opacity: 1; transform: none; }
 }
 
-/* Modal */
 .lightbox {
   width: 100%; height: 100%; max-width: none; max-height: none;
   margin: 0; padding: 1rem; border: 0; background: transparent;
@@ -262,10 +262,8 @@ main:focus { outline: none; }
 @keyframes fade { from { opacity: 0; } }
 @keyframes zoom { from { transform: scale(.92) translateY(20px); } }
 
-/* ============ 5. Spécialités ============ */
 .cards { display: grid; gap: 1.5rem; margin-top: 3rem; }
 @media (min-width: 640px) { .cards { grid-template-columns: repeat(2, 1fr); } }
-@media (min-width: 1024px) { .cards { grid-template-columns: repeat(3, 1fr); } }
 .card {
   padding: 1.5rem; border: 1px solid var(--border); border-radius: var(--radius);
   background: var(--card); box-shadow: 0 1px 2px rgba(59, 42, 30, .06);
@@ -275,19 +273,17 @@ main:focus { outline: none; }
 .price { flex-shrink: 0; font-weight: 700; color: var(--primary); }
 .card p { margin-top: 0.5rem; color: var(--muted-foreground); }
 
-/* ============ 6. Avis ============ */
 .reviews { display: grid; gap: 1.5rem; margin-top: 3rem; }
-@media (min-width: 768px) { .reviews { grid-template-columns: repeat(3, 1fr); } }
+@media (min-width: 768px) { .reviews { grid-template-columns: repeat(2, 1fr); } }
 .review {
   display: flex; flex-direction: column; margin: 0; padding: 1.5rem;
   border: 1px solid var(--border); border-radius: var(--radius); background: var(--card);
 }
-.stars { display: flex; gap: 0.25rem; color: var(--border); }
+.stars { display: flex; gap: 0.25rem; color: #a38c74; }
 .star--on { color: var(--primary); fill: var(--primary); }
 .review blockquote { flex: 1; margin: 1rem 0 0; }
 .review figcaption { margin-top: 1rem; font-weight: 600; color: var(--muted-foreground); }
 
-/* ============ 7. Horaires & accès ============ */
 .access { display: grid; gap: 2.5rem; }
 @media (min-width: 1024px) { .access { grid-template-columns: 1fr 1fr; } }
 .hours { width: 100%; margin-top: 2rem; border-collapse: collapse; }
@@ -310,7 +306,6 @@ main:focus { outline: none; }
 .map__placeholder .icon { width: 2rem; height: 2rem; color: var(--terracotta); }
 .map__placeholder p { max-width: 24rem; color: var(--muted-foreground); }
 
-/* ============ 8. Contact ============ */
 .contact { max-width: 48rem; text-align: center; }
 .contact > p { margin-top: 1rem; font-size: 1.125rem; color: var(--muted-foreground); }
 .socials { display: flex; justify-content: center; gap: 0.75rem; margin-top: 2rem; }
@@ -321,7 +316,6 @@ main:focus { outline: none; }
 }
 .socials a:hover { background: var(--primary); color: var(--on-primary); }
 
-/* ============ 9. Footer ============ */
 .footer { padding-block: 3rem; background: var(--foreground); color: rgba(251, 246, 238, .85); }
 .footer__inner { display: grid; gap: 2rem; }
 .footer__name { font: 700 1.25rem var(--font-serif); color: var(--background); }
@@ -333,11 +327,10 @@ main:focus { outline: none; }
 .link-button { padding: 0; border: 0; background: none; color: inherit; font: inherit; cursor: pointer; }
 .footer :focus-visible { outline-color: var(--background); }
 @media (min-width: 768px) {
-  .footer__inner { grid-template-columns: repeat(3, 1fr); }
+  .footer__inner { grid-template-columns: 1fr 1fr auto; }
   .footer__legal { text-align: right; }
 }
 
-/* ============ Bandeau cookies ============ */
 .consent {
   position: fixed; left: 1rem; right: 1rem; bottom: 1rem; z-index: 60;
   max-width: 40rem; margin-inline: auto; padding: 1.25rem;
@@ -351,12 +344,22 @@ main:focus { outline: none; }
 .consent a { color: var(--primary); text-underline-offset: 3px; }
 .consent__actions { display: grid; gap: 0.5rem; margin-top: 1rem; }
 .consent__actions .btn, .consent__details .btn { width: 100%; }
-@media (min-width: 640px) { .consent__actions { grid-template-columns: repeat(3, 1fr); } }
+@media (min-width: 640px) { .consent__actions { grid-template-columns: repeat(2, 1fr); } }
 .consent__details { display: grid; gap: 0.75rem; margin-top: 1rem; padding-top: 1rem; border-top: 1px solid var(--border); }
 .consent__option { display: flex; gap: 0.75rem; align-items: flex-start; font-size: 0.9375rem; cursor: pointer; }
+@media (max-height: 600px) {
+  .consent { bottom: 0.5rem; padding: 1rem; }
+  .consent p, .consent__option { font-size: 0.875rem; }
+  .consent__title { margin-bottom: 0.25rem; }
+  .consent__details, .consent__actions { margin-top: 0.75rem; }
+  .consent__details { padding-top: 0.75rem; }
+}
+@media (max-height: 600px) and (min-width: 640px) {
+  .consent { max-width: 48rem; }
+  .consent__details { grid-template-columns: 1fr auto; align-items: center; }
+}
 .consent__option input { width: 1.5rem; height: 1.5rem; margin: 0; flex-shrink: 0; accent-color: var(--primary); }
 
-/* ============ Pages légales ============ */
 .legal { max-width: 48rem; padding-block: 3rem 4rem; }
 .legal h1 { font-size: clamp(2rem, 5vw, 2.5rem); }
 .legal h2 { margin-top: 2.5rem; font-size: 1.5rem; }
@@ -370,8 +373,15 @@ main:focus { outline: none; }
 .legal table { width: 100%; border-collapse: collapse; font-size: 0.9375rem; }
 .legal th, .legal td { padding: 0.5rem 0.75rem; border: 1px solid var(--border); text-align: left; vertical-align: top; }
 .legal th { background: var(--muted); }
+.legal { overflow-wrap: break-word; }
+@media (max-width: 639px) {
+  .legal thead { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0, 0, 0, 0); }
+  .legal table, .legal tbody, .legal tr, .legal td { display: block; }
+  .legal tr + tr { margin-top: 1rem; }
+  .legal td + td { border-top: 0; }
+  .legal td::before { content: attr(data-label); display: block; font-weight: 600; }
+}
 
-/* ============ Animations d'apparition ============ */
 .js .reveal { opacity: 0; transform: translateY(24px); transition: opacity .6s ease-out, transform .6s ease-out; }
 .js .reveal.is-visible { opacity: 1; transform: none; }
 .highlight:nth-child(2), .card:nth-child(3n+2), .review:nth-child(2) { transition-delay: .1s; }

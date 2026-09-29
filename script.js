@@ -1,5 +1,12 @@
-// Remplit la page à partir de config.js, puis gère menu, galerie et animations.
-// Rien à modifier ici pour adapter le site : tout se passe dans config.js.
+/*
+  Author: Nicolas Dos Santos
+  Created: 2026
+
+  File: script.js
+  Description: Fills the page from config.js; menu, gallery and animations.
+
+  © Nicolas Dos Santos. All rights reserved.
+*/
 
 (() => {
   const $ = (sel) => document.querySelector(sel);
@@ -9,7 +16,6 @@
   const { address } = SITE;
   SITE.fullAddress = `${address.street}, ${address.postalCode} ${address.city}`;
 
-  // ---------- Icônes (tracés lucide) ----------
   const ICONS = {
     wheat: '<path d="M2 22 16 8"/><path d="M3.47 12.53 5 11l1.53 1.53a3.5 3.5 0 0 1 0 4.94L5 19l-1.53-1.53a3.5 3.5 0 0 1 0-4.94Z"/><path d="M7.47 8.53 9 7l1.53 1.53a3.5 3.5 0 0 1 0 4.94L9 15l-1.53-1.53a3.5 3.5 0 0 1 0-4.94Z"/><path d="M11.47 4.53 13 3l1.53 1.53a3.5 3.5 0 0 1 0 4.94L13 11l-1.53-1.53a3.5 3.5 0 0 1 0-4.94Z"/><path d="M20 2h2v2a4 4 0 0 1-4 4h-2V6a4 4 0 0 1 4-4Z"/><path d="M11.47 17.47 13 19l-1.53 1.53a3.5 3.5 0 0 1-4.94 0L5 19l1.53-1.53a3.5 3.5 0 0 1 4.94 0Z"/><path d="M15.47 13.47 17 15l-1.53 1.53a3.5 3.5 0 0 1-4.94 0L9 15l1.53-1.53a3.5 3.5 0 0 1 4.94 0Z"/><path d="M19.47 9.47 21 11l-1.53 1.53a3.5 3.5 0 0 1-4.94 0L13 11l1.53-1.53a3.5 3.5 0 0 1 4.94 0Z"/>',
     clock: '<circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/>',
@@ -28,7 +34,6 @@
   const icon = (name, cls = "icon") =>
     `<svg class="${cls}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${ICONS[name]}</svg>`;
 
-  // ---------- Textes simples ----------
   const get = (path) => path.split(".").reduce((o, k) => o[k], SITE);
   $$("[data-text]").forEach((el) => (el.textContent = get(el.dataset.text)));
   $$("[data-tel]").forEach((a) => (a.href = `tel:${SITE.phoneIntl}`));
@@ -36,24 +41,20 @@
   $$("[data-social]").forEach((a) => (a.href = SITE.social[a.dataset.social]));
   $("#year").textContent = new Date().getFullYear();
 
-  // ---------- Mode démo (bandeau + avis signalés comme fictifs) ----------
   if (SITE.demo) {
     $("#demo-notice").textContent = SITE.demoNotice;
     $("#demo-notice").hidden = false;
     $("#reviews-note").hidden = false;
+    $(".socials").hidden = true;
   }
 
-  // ---------- Images ----------
-  Object.assign($("#hero-img"), { src: SITE.hero.image, alt: SITE.hero.imageAlt });
   Object.assign($("#story-img"), { src: SITE.story.image, alt: SITE.story.imageAlt });
 
-  // ---------- Notre histoire ----------
   $("#story-text").insertAdjacentHTML("beforeend", SITE.story.paragraphs.map((p) => `<p>${esc(p)}</p>`).join(""));
   $("#highlights").innerHTML = SITE.story.highlights
     .map((h) => `<div class="highlight reveal">${icon(h.icon, "icon icon--lg")}<div><h3>${esc(h.title)}</h3><p>${esc(h.text)}</p></div></div>`)
     .join("");
 
-  // ---------- Galerie bento ----------
   const spanClass = (span) => span.split(" ").filter(Boolean).map((s) => `tile--${s}`).join(" ");
   $("#gallery").innerHTML = SITE.gallery.items
     .map(
@@ -65,12 +66,10 @@
     )
     .join("");
 
-  // ---------- Spécialités ----------
   $("#specialties").innerHTML = SITE.specialties.items
     .map((s) => `<article class="card reveal"><div class="card__head"><h3>${esc(s.name)}</h3><span class="price">${esc(s.price)}</span></div><p>${esc(s.description)}</p></article>`)
     .join("");
 
-  // ---------- Avis ----------
   $("#reviews").innerHTML = SITE.reviews.items
     .map(
       (r) => `
@@ -84,19 +83,15 @@
     )
     .join("");
 
-  // ---------- Horaires & carte ----------
-  const h = (t) => t.replace(":", "h");
+  const h = (t) => t.replace(/^0/, "").replace(":00", "h").replace(":", "h");
   $("#hours").innerHTML = SITE.hours
     .map((d) => `<tr><th scope="row">${esc(d.day)}</th>${d.open ? `<td>${h(d.open)} – ${h(d.close)}</td>` : `<td class="closed">Fermé</td>`}</tr>`)
     .join("");
-  // La carte n'est chargée qu'après consentement (voir consent.js)
   $("#map").dataset.src = `https://maps.google.com/maps?q=${encodeURIComponent(SITE.fullAddress)}&z=16&output=embed`;
   $("#map").title = `Plan d'accès à ${SITE.name}`;
 
-  // ---------- Icônes statiques du HTML ----------
   $$("svg[data-icon]").forEach((el) => (el.outerHTML = icon(el.dataset.icon)));
 
-  // ---------- Menu mobile ----------
   const burger = $(".burger");
   const nav = $("#nav");
   const setMenu = (open) => {
@@ -109,7 +104,6 @@
   nav.addEventListener("click", (e) => e.target.closest("a") && setMenu(false));
   document.addEventListener("keydown", (e) => e.key === "Escape" && nav.classList.contains("is-open") && (setMenu(false), burger.focus()));
 
-  // ---------- Galerie : glisser à la souris (le tactile défile nativement) ----------
   const track = $("#gallery");
   let dragStartX = 0, startScroll = 0, dragging = false, moved = false;
   track.addEventListener("pointerdown", (e) => {
@@ -133,7 +127,6 @@
     track.classList.remove("is-dragging");
   });
 
-  // ---------- Galerie : slider (flèches précédent / suivant) ----------
   const prev = $("#slider-prev");
   const next = $("#slider-next");
   const reduceMotion = matchMedia("(prefers-reduced-motion: reduce)");
@@ -142,6 +135,7 @@
   const updateArrows = () => {
     prev.disabled = track.scrollLeft <= 1;
     next.disabled = track.scrollLeft + track.clientWidth >= track.scrollWidth - 1;
+    $(".slider__controls").hidden = prev.disabled && next.disabled;
   };
   prev.addEventListener("click", () => slide(-1));
   next.addEventListener("click", () => slide(1));
@@ -149,7 +143,6 @@
   window.addEventListener("resize", updateArrows);
   updateArrows();
 
-  // ---------- Galerie : modal (Échap géré nativement par <dialog>) ----------
   const lightbox = $("#lightbox");
   track.addEventListener("click", (e) => {
     const tile = e.target.closest(".tile");
@@ -159,12 +152,10 @@
     $("#lightbox-caption").textContent = `${item.title} — ${item.desc}`;
     lightbox.showModal();
   });
-  // Clic partout sauf sur la photo et sa légende (fond, bouton X) = fermeture
   lightbox.addEventListener("click", (e) => {
     if (!e.target.closest("#lightbox-img, #lightbox-caption")) lightbox.close();
   });
 
-  // ---------- Apparition des sections ----------
   const io = new IntersectionObserver(
     (entries) => entries.forEach((en) => en.isIntersecting && (en.target.classList.add("is-visible"), io.unobserve(en.target))),
     { threshold: 0.15 },
